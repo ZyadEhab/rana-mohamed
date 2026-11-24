@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>دعوة زفاف رنا و محمد</title>
 
-  <!-- إعدادات معاينة رابط واتساب -->
+  <!-- إعدادات معاينة رابط واتساب (تأكد إن اسم الصورة هنا نفس اسم صورة الواتس اللي ظبطتها) -->
   <meta property="og:title" content="دعوة زفاف رنا و محمد 💍" />
   <meta property="og:description" content="نتشرف بدعوتكم لحضور حفل زفافنا يوم الخميس ١٧ ديسمبر ٢٠٢٦ - قاعة الماسة، شبرا الخيمة." />
- <meta property="og:image" content="https://zyadehab.github.io/rana-mohamed/preview.jpg?v=2" />
+  <meta property="og:image" content="https://zyadehab.github.io/rana-mohamed/preview.jpg?v=2" />
   <meta property="og:url" content="https://zyadehab.github.io/rana-mohamed/" />
   <meta property="og:type" content="website" />
 
@@ -22,11 +22,12 @@
       --bg-deep: #040B16;
       --bg-navy: #091529;
       --gold-champagne: #E5C787;
+      --gold-bright: #FFF4D2;
       --gold-mid: #C9A24D;
       --gold-dark: #8C6A23;
-      --gold-line: rgba(229, 199, 135, 0.25);
+      --gold-line: rgba(229, 199, 135, 0.28);
       --text-white: #FBF8F1;
-      --text-soft: #B5C3D8;
+      --text-soft: #B8C6DC;
     }
 
     * {
@@ -46,15 +47,24 @@
       min-height: 100vh;
       overflow-x: hidden;
       background-image:
-        radial-gradient(circle at 50% 0%, rgba(28, 59, 107, 0.45) 0%, transparent 55%),
-        radial-gradient(circle at 85% 80%, rgba(201, 162, 77, 0.08) 0%, transparent 45%),
-        radial-gradient(rgba(229, 199, 135, 0.05) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 28px 28px;
+        radial-gradient(circle at 50% 0%, rgba(26, 56, 102, 0.5) 0%, transparent 55%),
+        radial-gradient(circle at 15% 45%, rgba(201, 162, 77, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(201, 162, 77, 0.08) 0%, transparent 50%);
     }
 
     body.locked {
       overflow: hidden;
       height: 100vh;
+    }
+
+    /* ================= كانفاس الغبار الذهبي السينمائي (Ambient Gold Bokeh) ================= */
+    #bokeh-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ================= شريط التقدم الذهبي أعلى الشاشة ================= */
@@ -64,8 +74,8 @@
       right: 0;
       height: 2.5px;
       width: 0%;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold-champagne), #FFF6DA);
-      box-shadow: 0 0 10px rgba(229, 199, 135, 0.7);
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-champagne), var(--gold-bright));
+      box-shadow: 0 0 12px rgba(229, 199, 135, 0.75);
       z-index: 300;
       transition: width 0.1s linear;
     }
@@ -91,21 +101,21 @@
       top: 0;
       bottom: 0;
       width: 50%;
-      background: radial-gradient(circle at center, #0E2240 0%, #040B16 90%);
+      background: radial-gradient(circle at center, #0E2240 0%, #040B16 92%);
       transition: transform 1.15s cubic-bezier(0.77, 0, 0.175, 1);
       z-index: 1;
     }
 
     .curtain-left {
       left: 0;
-      border-right: 1px solid rgba(229, 199, 135, 0.22);
-      box-shadow: inset -20px 0 50px rgba(0, 0, 0, 0.45);
+      border-right: 1px solid rgba(229, 199, 135, 0.24);
+      box-shadow: inset -20px 0 50px rgba(0, 0, 0, 0.5);
     }
 
     .curtain-right {
       right: 0;
-      border-left: 1px solid rgba(229, 199, 135, 0.22);
-      box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.45);
+      border-left: 1px solid rgba(229, 199, 135, 0.24);
+      box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5);
     }
 
     #intro-screen.open .curtain-left {
@@ -134,8 +144,8 @@
 
     .crest-container {
       position: relative;
-      width: 170px;
-      height: 170px;
+      width: 174px;
+      height: 174px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -168,8 +178,8 @@
       inset: 12px;
       border-radius: 50%;
       border: 1.5px solid var(--gold-mid);
-      background: radial-gradient(circle, rgba(229, 199, 135, 0.1) 0%, rgba(4, 11, 22, 0.65) 100%);
-      box-shadow: 0 0 35px rgba(201, 162, 77, 0.2), inset 0 0 20px rgba(201, 162, 77, 0.1);
+      background: radial-gradient(circle, rgba(229, 199, 135, 0.12) 0%, rgba(4, 11, 22, 0.68) 100%);
+      box-shadow: 0 0 38px rgba(201, 162, 77, 0.22), inset 0 0 22px rgba(201, 162, 77, 0.12);
     }
 
     @keyframes spinSlow {
@@ -180,9 +190,9 @@
       position: relative;
       z-index: 2;
       font-family: 'Aref Ruqaa', serif;
-      font-size: 2.5rem;
+      font-size: 2.55rem;
       color: var(--gold-champagne);
-      text-shadow: 0 4px 18px rgba(201, 162, 77, 0.35);
+      text-shadow: 0 4px 18px rgba(201, 162, 77, 0.4);
     }
 
     .intro-sub {
@@ -194,16 +204,19 @@
 
     .intro-names {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 2.4rem;
+      font-size: 2.45rem;
       color: var(--gold-champagne);
       margin-bottom: 34px;
     }
 
+    /* زر الفتح مع تأثير اللمعان الزجاجي */
     .open-btn {
-      background: transparent;
+      position: relative;
+      overflow: hidden;
+      background: rgba(229, 199, 135, 0.06);
       color: var(--gold-champagne);
       border: 1px solid var(--gold-mid);
-      padding: 13px 46px;
+      padding: 13px 48px;
       border-radius: 50px;
       font-family: 'Tajawal', sans-serif;
       font-size: 1.05rem;
@@ -211,14 +224,31 @@
       letter-spacing: 0.5px;
       cursor: pointer;
       transition: all 0.35s ease;
-      box-shadow: 0 0 25px rgba(201, 162, 77, 0.18);
+      box-shadow: 0 0 28px rgba(201, 162, 77, 0.2);
+    }
+
+    .open-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 65%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 244, 210, 0.35), transparent);
+      transform: skewX(-22deg);
+      animation: sheenSweep 4.2s ease-in-out infinite;
     }
 
     .open-btn:hover {
       background: var(--gold-champagne);
       color: var(--bg-deep);
-      box-shadow: 0 0 32px rgba(229, 199, 135, 0.45);
+      box-shadow: 0 0 34px rgba(229, 199, 135, 0.48);
       transform: translateY(-2px);
+    }
+
+    @keyframes sheenSweep {
+      0%, 55% { left: -120%; }
+      100% { left: 160%; }
     }
 
     /* ================= زر الصوت بمؤشر إيكولايزر متحرك ================= */
@@ -230,7 +260,7 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: rgba(9, 21, 41, 0.82);
+      background: rgba(9, 21, 41, 0.84);
       border: 1px solid var(--gold-line);
       display: none;
       align-items: center;
@@ -280,6 +310,8 @@
 
     /* ================= المحتوى الرئيسي ================= */
     main {
+      position: relative;
+      z-index: 2;
       max-width: 540px;
       margin: 0 auto;
       padding: 0 18px 80px;
@@ -293,28 +325,82 @@
       transform: scale(1);
     }
 
-    /* ================= قسم الواجهة (Hero Section) ================= */
+    /* ================= قسم الواجهة مع الزخارف النباتية واللمعان ================= */
     .hero-section {
       min-height: 92vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 0 24px;
+      padding: 46px 0 24px;
       text-align: center;
+    }
+
+    .hero-photo-stage {
+      position: relative;
+      width: 100%;
+      max-width: 344px;
+      margin-bottom: -44px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* الزخارف النباتية الذهبية الدقيقة حول الإطار */
+    .botanical-branch {
+      position: absolute;
+      width: 118px;
+      height: 155px;
+      color: var(--gold-champagne);
+      opacity: 0.72;
+      pointer-events: none;
+      z-index: 4;
+      filter: drop-shadow(0 0 8px rgba(229, 199, 135, 0.28));
+      transform-origin: bottom center;
+    }
+
+    .botanical-left {
+      top: -18px;
+      left: -26px;
+      animation: swayLeft 7s ease-in-out infinite;
+    }
+
+    .botanical-right {
+      top: -18px;
+      right: -26px;
+      transform: scaleX(-1);
+      animation: swayRight 7.5s ease-in-out infinite;
+    }
+
+    @keyframes swayLeft {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(2.8deg); }
+    }
+
+    @keyframes swayRight {
+      0%, 100% { transform: scaleX(-1) rotate(0deg); }
+      50% { transform: scaleX(-1) rotate(2.8deg); }
     }
 
     .hero-arch-frame {
       position: relative;
       width: 100%;
-      max-width: 340px;
-      height: 430px;
+      height: 432px;
       border-radius: 180px 180px 24px 24px;
       padding: 10px;
-      border: 1px solid rgba(229, 199, 135, 0.4);
-      background: linear-gradient(180deg, rgba(229, 199, 135, 0.12) 0%, transparent 100%);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
-      margin-bottom: -42px;
+      border: 1px solid rgba(229, 199, 135, 0.45);
+      background: linear-gradient(180deg, rgba(229, 199, 135, 0.14) 0%, transparent 100%);
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.7),
+        0 0 36px rgba(201, 162, 77, 0.14);
+    }
+
+    .hero-arch-frame::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 186px 186px 28px 28px;
+      border: 1px solid rgba(229, 199, 135, 0.16);
+      pointer-events: none;
     }
 
     .hero-arch-inner {
@@ -326,7 +412,26 @@
       background: #071326;
     }
 
-    /* حركة Ken Burns ناعمة وبطيئة على الصورة */
+    /* لمعة زجاجية ناعمة تمر على صورة العروسين */
+    .hero-arch-inner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 246, 218, 0.18) 50%, transparent 80%);
+      transform: skewX(-18deg);
+      z-index: 3;
+      pointer-events: none;
+      animation: photoSheen 7.5s ease-in-out infinite;
+    }
+
+    @keyframes photoSheen {
+      0%, 62% { left: -130%; }
+      100% { left: 165%; }
+    }
+
     .hero-arch-inner img {
       width: 100%;
       height: 100%;
@@ -348,6 +453,7 @@
       inset: 0;
       background: linear-gradient(180deg, transparent 52%, rgba(4, 11, 22, 0.88) 92%, #040B16 100%);
       pointer-events: none;
+      z-index: 2;
     }
 
     .hero-text {
@@ -400,7 +506,7 @@
     .scroll-hint {
       margin-top: 32px;
       color: var(--gold-champagne);
-      opacity: 0.6;
+      opacity: 0.65;
       font-size: 0.85rem;
       animation: bounceSoft 2s infinite;
     }
@@ -410,36 +516,36 @@
       50% { transform: translateY(6px); }
     }
 
-    /* ================= الفواصل الزخرفية ================= */
-    .luxury-divider {
+    /* ================= الفواصل النباتية الذهبية ================= */
+    .botanical-divider {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      margin: 44px auto;
-      color: var(--gold-mid);
+      margin: 42px auto;
+      color: var(--gold-champagne);
+      opacity: 0.85;
     }
 
-    .luxury-divider::before,
-    .luxury-divider::after {
-      content: "";
-      height: 1px;
-      width: 90px;
-      background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+    .botanical-divider svg {
+      width: 220px;
+      height: 28px;
+      filter: drop-shadow(0 0 6px rgba(229, 199, 135, 0.25));
     }
 
     /* ================= قسم الآية القرآنية ================= */
     .verse-section {
+      position: relative;
       text-align: center;
-      padding: 10px 14px;
+      padding: 20px 18px;
     }
 
     .verse-text {
       font-family: 'Amiri', serif;
-      font-size: 1.28rem;
-      line-height: 2.1;
+      font-size: 1.3rem;
+      line-height: 2.15;
       color: var(--gold-champagne);
       margin-bottom: 14px;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
     }
 
     .invite-line {
@@ -452,7 +558,7 @@
     .section-heading {
       text-align: center;
       font-family: 'Amiri', serif;
-      font-size: 1.75rem;
+      font-size: 1.78rem;
       color: var(--gold-champagne);
       margin-bottom: 22px;
       font-weight: 400;
@@ -460,13 +566,13 @@
 
     /* ================= تقويم ديسمبر ٢٠٢٦ المصغّر ================= */
     .calendar-card {
-      background: linear-gradient(160deg, rgba(16, 36, 68, 0.45), rgba(6, 15, 30, 0.7));
+      background: linear-gradient(160deg, rgba(16, 36, 68, 0.45), rgba(6, 15, 30, 0.72));
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--gold-line);
       border-radius: 26px;
       padding: 28px 20px 26px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.42);
     }
 
     .calendar-month {
@@ -521,12 +627,12 @@
       top: -11px;
       font-size: 0.65rem;
       color: var(--gold-champagne);
-      text-shadow: 0 0 8px rgba(229, 199, 135, 0.8);
+      text-shadow: 0 0 8px rgba(229, 199, 135, 0.85);
     }
 
     @keyframes dayPulse {
       0%, 100% { box-shadow: 0 0 14px rgba(229, 199, 135, 0.45); }
-      50% { box-shadow: 0 0 26px rgba(229, 199, 135, 0.85); }
+      50% { box-shadow: 0 0 26px rgba(229, 199, 135, 0.88); }
     }
 
     /* ================= العداد التنازلي العصري ================= */
@@ -537,7 +643,7 @@
     }
 
     .time-card {
-      background: rgba(13, 30, 56, 0.45);
+      background: rgba(13, 30, 56, 0.48);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--gold-line);
@@ -573,26 +679,57 @@
       opacity: 0.85;
     }
 
-    /* ================= بطاقة مكان الحفل ================= */
-    .venue-card {
-      background: linear-gradient(160deg, rgba(16, 36, 68, 0.55), rgba(6, 15, 30, 0.75));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--gold-line);
+    /* ================= بطاقة الدعوة الملكية (VIP Ticket Card) ================= */
+    .vip-ticket {
+      position: relative;
+      background: linear-gradient(155deg, rgba(19, 41, 77, 0.72) 0%, rgba(7, 17, 34, 0.88) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(229, 199, 135, 0.38);
       border-radius: 26px;
-      padding: 34px 24px;
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 244, 210, 0.16);
+      overflow: hidden;
+    }
+
+    /* إطار داخلي ذهبي رفيع للبطاقة */
+    .vip-ticket::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1px solid rgba(229, 199, 135, 0.14);
+      border-radius: 19px;
+      pointer-events: none;
+    }
+
+    .ticket-top {
+      padding: 28px 24px 24px;
       text-align: center;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .ticket-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 16px;
+      border-radius: 50px;
+      border: 1px solid var(--gold-line);
+      background: rgba(229, 199, 135, 0.08);
+      color: var(--gold-champagne);
+      font-size: 0.75rem;
+      letter-spacing: 1.8px;
+      margin-bottom: 18px;
     }
 
     .venue-icon {
-      width: 52px;
-      height: 52px;
-      margin: 0 auto 16px;
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 14px;
       border-radius: 50%;
       border: 1px solid var(--gold-line);
-      background: rgba(229, 199, 135, 0.08);
+      background: radial-gradient(circle, rgba(229, 199, 135, 0.16), transparent 70%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -600,16 +737,81 @@
     }
 
     .venue-name {
-      font-size: 1.4rem;
+      font-family: 'Amiri', serif;
+      font-size: 1.85rem;
       font-weight: 700;
       color: var(--text-white);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .venue-details {
-      font-size: 0.98rem;
-      color: var(--text-soft);
-      margin-bottom: 26px;
+    .venue-area {
+      font-size: 0.96rem;
+      color: var(--gold-champagne);
+      opacity: 0.9;
+      margin-bottom: 22px;
+    }
+
+    /* تقسيمة الميعاد والتاريخ داخل التذكرة */
+    .ticket-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      align-items: center;
+      background: rgba(4, 11, 22, 0.45);
+      border: 1px solid rgba(229, 199, 135, 0.18);
+      border-radius: 14px;
+      padding: 14px 10px;
+    }
+
+    .ticket-meta-sep {
+      height: 36px;
+      background: linear-gradient(180deg, transparent, var(--gold-line), transparent);
+    }
+
+    .meta-label {
+      font-size: 0.76rem;
+      color: var(--gold-champagne);
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    /* خط القص المخرّم لتذكرة الـ VIP مع النوتش الجانبي */
+    .ticket-tear {
+      position: relative;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ticket-tear::before,
+    .ticket-tear::after {
+      content: "";
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg-deep);
+      border: 1px solid rgba(229, 199, 135, 0.35);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .ticket-tear::before { left: -14px; }
+    .ticket-tear::after { right: -14px; }
+
+    .ticket-dashed-line {
+      width: calc(100% - 48px);
+      border-top: 1.5px dashed rgba(229, 199, 135, 0.3);
+    }
+
+    .ticket-bottom {
+      padding: 16px 24px 28px;
     }
 
     .btn-group {
@@ -620,6 +822,8 @@
 
     .btn-gold,
     .btn-ghost {
+      position: relative;
+      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -635,25 +839,38 @@
     }
 
     .btn-gold {
-      background: linear-gradient(135deg, #F2DC9F 0%, #C9A24D 100%);
+      background: linear-gradient(135deg, #F4E0A8 0%, #C9A24D 100%);
       color: var(--bg-deep);
       border: none;
-      box-shadow: 0 10px 25px rgba(201, 162, 77, 0.25);
+      box-shadow: 0 10px 25px rgba(201, 162, 77, 0.28);
+    }
+
+    /* لمعة زجاجية تمر على زر خرائط جوجل */
+    .btn-gold::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      transform: skewX(-22deg);
+      animation: sheenSweep 4.8s ease-in-out infinite;
     }
 
     .btn-gold:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(201, 162, 77, 0.38);
+      box-shadow: 0 14px 32px rgba(201, 162, 77, 0.42);
     }
 
     .btn-ghost {
-      background: rgba(229, 199, 135, 0.05);
+      background: rgba(229, 199, 135, 0.06);
       color: var(--gold-champagne);
       border: 1px solid var(--gold-line);
     }
 
     .btn-ghost:hover {
-      background: rgba(229, 199, 135, 0.12);
+      background: rgba(229, 199, 135, 0.14);
       transform: translateY(-2px);
     }
 
@@ -665,16 +882,16 @@
 
     .footer-quote {
       font-family: 'Amiri', serif;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       color: var(--gold-champagne);
       margin-bottom: 8px;
     }
 
     .footer-initials {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--text-soft);
-      opacity: 0.6;
+      opacity: 0.65;
     }
 
     /* حركة الظهور عند السكرول */
@@ -715,10 +932,13 @@
 </head>
 <body class="locked">
 
+  <!-- كانفاس الغبار الذهبي السينمائي -->
+  <canvas id="bokeh-canvas"></canvas>
+
   <!-- شريط التقدم الذهبي -->
   <div id="scroll-progress"></div>
 
-  <!-- ملف الموسيقى (ارفع ملف باسم music.mp3 جنب index.html) -->
+  <!-- ملف الموسيقى -->
   <audio id="bg-music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
@@ -752,11 +972,35 @@
   <!-- محتوى الدعوة -->
   <main id="main-content">
 
-    <!-- الواجهة الرئيسية مع الصورة -->
+    <!-- الواجهة الرئيسية مع الصورة والزخارف النباتية الذهبية -->
     <section class="hero-section">
-      <div class="hero-arch-frame">
-        <div class="hero-arch-inner">
-          <img src="couple.jpg" alt="رنا ومحمد" />
+      <div class="hero-photo-stage">
+        <!-- غصن ذهبي يسار -->
+        <svg class="botanical-branch botanical-left" viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+          <path d="M98 150 C68 118, 42 78, 22 14" />
+          <path d="M74 122 C54 122, 42 114, 34 102 C48 102, 62 110, 74 122 Z" fill="currentColor" fill-opacity="0.12" />
+          <path d="M62 102 C74 88, 84 78, 92 64 C78 72, 68 84, 62 102 Z" fill="currentColor" fill-opacity="0.1" />
+          <path d="M52 84 C32 82, 20 72, 12 58 C28 60, 42 70, 52 84 Z" fill="currentColor" fill-opacity="0.14" />
+          <path d="M40 60 C52 46, 60 36, 66 22 C52 30, 44 44, 40 60 Z" fill="currentColor" fill-opacity="0.12" />
+          <path d="M30 38 C16 34, 8 24, 6 12 C18 16, 26 26, 30 38 Z" fill="currentColor" fill-opacity="0.15" />
+          <circle cx="20" cy="12" r="2.2" fill="currentColor" />
+        </svg>
+
+        <!-- غصن ذهبي يمين -->
+        <svg class="botanical-branch botanical-right" viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+          <path d="M98 150 C68 118, 42 78, 22 14" />
+          <path d="M74 122 C54 122, 42 114, 34 102 C48 102, 62 110, 74 122 Z" fill="currentColor" fill-opacity="0.12" />
+          <path d="M62 102 C74 88, 84 78, 92 64 C78 72, 68 84, 62 102 Z" fill="currentColor" fill-opacity="0.1" />
+          <path d="M52 84 C32 82, 20 72, 12 58 C28 60, 42 70, 52 84 Z" fill="currentColor" fill-opacity="0.14" />
+          <path d="M40 60 C52 46, 60 36, 66 22 C52 30, 44 44, 40 60 Z" fill="currentColor" fill-opacity="0.12" />
+          <path d="M30 38 C16 34, 8 24, 6 12 C18 16, 26 26, 30 38 Z" fill="currentColor" fill-opacity="0.15" />
+          <circle cx="20" cy="12" r="2.2" fill="currentColor" />
+        </svg>
+
+        <div class="hero-arch-frame">
+          <div class="hero-arch-inner">
+            <img src="couple.jpg" alt="رنا ومحمد" />
+          </div>
         </div>
       </div>
 
@@ -773,7 +1017,18 @@
       <div class="scroll-hint">↓ اسحب للأسفل للتفاصيل</div>
     </section>
 
-    <div class="luxury-divider reveal">✦</div>
+    <!-- فاصل نباتي ذهبي -->
+    <div class="botanical-divider reveal">
+      <svg viewBox="0 0 240 30" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M10 15 Q60 15 106 15" opacity="0.55" />
+        <path d="M134 15 Q180 15 230 15" opacity="0.55" />
+        <path d="M84 15 C76 8, 66 7, 58 10 C66 14, 74 15, 84 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M84 15 C76 22, 66 23, 58 20 C66 16, 74 15, 84 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M156 15 C164 8, 174 7, 182 10 C174 14, 166 15, 156 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M156 15 C164 22, 174 23, 182 20 C174 16, 166 15, 156 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M120 7 L125 15 L120 23 L115 15 Z" fill="currentColor" fill-opacity="0.85" />
+      </svg>
+    </div>
 
     <!-- الآية الكريمة -->
     <section class="verse-section reveal">
@@ -785,7 +1040,18 @@
       </p>
     </section>
 
-    <div class="luxury-divider reveal">✦</div>
+    <!-- فاصل نباتي ذهبي -->
+    <div class="botanical-divider reveal">
+      <svg viewBox="0 0 240 30" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M10 15 Q60 15 106 15" opacity="0.55" />
+        <path d="M134 15 Q180 15 230 15" opacity="0.55" />
+        <path d="M84 15 C76 8, 66 7, 58 10 C66 14, 74 15, 84 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M84 15 C76 22, 66 23, 58 20 C66 16, 74 15, 84 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M156 15 C164 8, 174 7, 182 10 C174 14, 166 15, 156 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M156 15 C164 22, 174 23, 182 20 C174 16, 166 15, 156 15 Z" fill="currentColor" fill-opacity="0.16" />
+        <path d="M120 7 L125 15 L120 23 L115 15 Z" fill="currentColor" fill-opacity="0.85" />
+      </svg>
+    </div>
 
     <!-- تقويم شهر ديسمبر ٢٠٢٦ -->
     <section class="reveal">
@@ -838,7 +1104,13 @@
       </div>
     </section>
 
-    <div class="luxury-divider reveal">✦</div>
+    <div class="botanical-divider reveal">
+      <svg viewBox="0 0 240 30" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M25 15 H106" opacity="0.5" />
+        <path d="M134 15 H215" opacity="0.5" />
+        <path d="M120 8 L125 15 L120 22 L115 15 Z" fill="currentColor" fill-opacity="0.85" />
+      </svg>
+    </div>
 
     <!-- العداد التنازلي -->
     <section class="reveal">
@@ -863,32 +1135,61 @@
       </div>
     </section>
 
-    <div class="luxury-divider reveal">✦</div>
+    <div class="botanical-divider reveal">
+      <svg viewBox="0 0 240 30" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M25 15 H106" opacity="0.5" />
+        <path d="M134 15 H215" opacity="0.5" />
+        <path d="M120 8 L125 15 L120 22 L115 15 Z" fill="currentColor" fill-opacity="0.85" />
+      </svg>
+    </div>
 
-    <!-- مكان الحفل -->
-    <section class="venue-card reveal">
-      <div class="venue-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
+    <!-- بطاقة الدعوة الملكية (VIP Ticket) لمكان الحفل -->
+    <section class="vip-ticket reveal">
+      <div class="ticket-top">
+        <div class="ticket-badge">✦ بطاقة دعوة ملكية ✦</div>
+
+        <div class="venue-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+
+        <h2 class="venue-name">قاعة الماسة</h2>
+        <div class="venue-area">شبرا الخيمة</div>
+
+        <div class="ticket-meta-grid">
+          <div>
+            <div class="meta-label">التاريخ</div>
+            <div class="meta-value">الخميس ١٧ ديسمبر ٢٠٢٦</div>
+          </div>
+          <div class="ticket-meta-sep"></div>
+          <div>
+            <div class="meta-label">الموعد</div>
+            <div class="meta-value">٧:٠٠ مساءً</div>
+          </div>
+        </div>
       </div>
-      <h2 class="section-heading" style="margin-bottom: 10px;">مكان الحفل</h2>
-      <div class="venue-name">قاعة الماسة - شبرا الخيمة</div>
-      <div class="venue-details">الخميس ١٧ ديسمبر ٢٠٢٦ • الساعة ٧:٠٠ مساءً</div>
 
-      <div class="btn-group">
-        <a
-          class="btn-gold"
-          href="https://maps.app.goo.gl/XcRYEmQDuzDo5mN27"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          فتح الموقع على خرائط جوجل
-        </a>
-        <button class="btn-ghost" onclick="copyAddress()">
-          نسخ العنوان والرابط
-        </button>
+      <!-- خط القص الفاخر للتذكرة -->
+      <div class="ticket-tear">
+        <div class="ticket-dashed-line"></div>
+      </div>
+
+      <div class="ticket-bottom">
+        <div class="btn-group">
+          <a
+            class="btn-gold"
+            href="https://maps.app.goo.gl/XcRYEmQDuzDo5mN27"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            فتح الموقع على خرائط جوجل
+          </a>
+          <button class="btn-ghost" onclick="copyAddress()">
+            نسخ العنوان والرابط
+          </button>
+        </div>
       </div>
     </section>
 
@@ -905,6 +1206,72 @@
     const WEDDING_DATE = new Date("2026-12-17T19:00:00+02:00").getTime();
     const VENUE_COPY_TEXT = "قاعة الماسة - شبرا الخيمة\nhttps://maps.app.goo.gl/XcRYEmQDuzDo5mN27";
 
+    // ================= الغبار الذهبي السينمائي (Ambient Gold Bokeh) =================
+    const canvas = document.getElementById("bokeh-canvas");
+    const ctx = canvas.getContext("2d");
+    let width, height, particles = [];
+    let scrollOffset = 0;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.min(42, Math.floor((window.innerWidth * window.innerHeight) / 18000) + 18);
+      for (let i = 0; i < count; i++) {
+        const isBigBokeh = Math.random() < 0.25;
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: isBigBokeh ? (10 + Math.random() * 18) : (1.5 + Math.random() * 3.5),
+          speedY: -(0.12 + Math.random() * 0.35),
+          speedX: (Math.random() - 0.5) * 0.22,
+          parallax: 0.04 + Math.random() * 0.14,
+          baseAlpha: isBigBokeh ? (0.04 + Math.random() * 0.08) : (0.2 + Math.random() * 0.35),
+          phase: Math.random() * Math.PI * 2,
+          twinkleSpeed: 0.008 + Math.random() * 0.015
+        });
+      }
+    }
+
+    function drawBokeh() {
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.phase += p.twinkleSpeed;
+
+        if (p.y < -30) p.y = height + 30;
+        if (p.x < -30) p.x = width + 30;
+        if (p.x > width + 30) p.x = -30;
+
+        const drawY = ((p.y - scrollOffset * p.parallax) % (height + 60) + (height + 60)) % (height + 60) - 30;
+        const alpha = p.baseAlpha * (0.65 + 0.35 * Math.sin(p.phase));
+
+        const grad = ctx.createRadialGradient(p.x, drawY, 0, p.x, drawY, p.r);
+        grad.addColorStop(0, `rgba(255, 244, 210, ${alpha})`);
+        grad.addColorStop(0.5, `rgba(229, 199, 135, ${alpha * 0.55})`);
+        grad.addColorStop(1, "rgba(229, 199, 135, 0)");
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(p.x, drawY, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(drawBokeh);
+    }
+
+    resizeCanvas();
+    initParticles();
+    drawBokeh();
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    // ================= الموسيقى وفتح الدعوة =================
     const audio = document.getElementById("bg-music");
     const musicBtn = document.getElementById("music-btn");
     let isPlaying = false;
@@ -945,11 +1312,11 @@
       }, 1200);
     }
 
-    // شريط التقدم الذهبي عند السكرول
+    // شريط التقدم + تحديث حركة الـ Bokeh مع السكرول
     window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY;
+      scrollOffset = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      const progress = docHeight > 0 ? (scrollOffset / docHeight) * 100 : 0;
       document.getElementById("scroll-progress").style.width = progress + "%";
     });
 
@@ -967,6 +1334,7 @@
       elements.forEach(el => observer.observe(el));
     }
 
+    // العداد التنازلي
     function updateCountdown() {
       const now = new Date().getTime();
       const diff = WEDDING_DATE - now;
