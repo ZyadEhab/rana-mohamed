@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دعوة زفاف رنا و محمد</title>
+
+  <!-- إعدادات معاينة رابط واتساب -->
+  <meta property="og:title" content="دعوة زفاف رنا و محمد" />
+  <meta property="og:description" content="نتشرف بدعوتكم لحضور حفل زفافنا يوم الخميس ١٧ ديسمبر ٢٠٢٦ - قاعة الماسة، شبرا الخيمة." />
+  <meta property="og:image" content="couple.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- خطوط عربية أنيقة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy-dark: #071224;
+      --navy-main: #0D1E3A;
+      --navy-card: #13294B;
+      --gold: #D4AF37;
+      --gold-light: #F3DF99;
+      --gold-dim: rgba(212, 175, 55, 0.3);
+      --text-light: #F8F5EE;
+      --text-muted: #C5D0E0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--navy-dark);
+      color: var(--text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(212, 175, 55, 0.08), transparent 45%),
+        radial-gradient(circle at 80% 85%, rgba(212, 175, 55, 0.07), transparent 45%);
+    }
+
+    /* ================= شاشة الظرف التفاعلية ================= */
+    #envelope-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: radial-gradient(circle at center, #13294B 0%, #071224 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    #envelope-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 310px;
+      height: 210px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+
+    .envelope-body {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #163059, #0B1930);
+      border: 1.5px solid var(--gold);
+      border-radius: 10px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.15);
+      overflow: hidden;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 115px;
+      background: linear-gradient(180deg, #1A3866, #102444);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-bottom: 1px solid var(--gold);
+      transform-origin: top center;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+    }
+
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: 92px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 65%, #9C7A19);
+      color: var(--navy-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Aref Ruqaa', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), inset 0 0 0 3px rgba(255, 255, 255, 0.25);
+      z-index: 4;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .envelope-wrapper:hover .wax-seal {
+      transform: translate(-50%, -50%) scale(1.07);
+    }
+
+    .envelope-wrapper.open .wax-seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    .open-hint {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .open-hint p {
+      font-family: 'Amiri', serif;
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+
+    .open-btn {
+      background: linear-gradient(135deg, var(--gold), #B68F23);
+      color: var(--navy-dark);
+      border: none;
+      padding: 12px 34px;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .open-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(212, 175, 55, 0.45);
+    }
+
+    /* ================= زر الصوت العائم ================= */
+    #music-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(19, 41, 75, 0.9);
+      border: 1.5px solid var(--gold);
+      color: var(--gold-light);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+    }
+
+    #music-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* ================= محتوى الدعوة الرئيسي ================= */
+    main {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    main.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .invitation-card {
+      background: linear-gradient(180deg, rgba(19, 41, 75, 0.88), rgba(11, 25, 48, 0.94));
+      border: 1.5px solid var(--gold-dim);
+      border-radius: 26px;
+      padding: 36px 22px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+    }
+
+    .invitation-card::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      line-height: 1.9;
+      margin-bottom: 18px;
+      padding: 0 8px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 18px auto;
+      color: var(--gold);
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      width: 65px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .couple-names {
+      font-family: 'Aref Ruqaa', serif;
+      font-size: 3.1rem;
+      line-height: 1.3;
+      background: linear-gradient(180deg, #FFF3C4 0%, #D4AF37 65%, #A9831B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px 0 14px;
+      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.25));
+    }
+
+    .date-badge {
+      display: inline-block;
+      padding: 8px 22px;
+      border-radius: 50px;
+      border: 1px solid var(--gold-dim);
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--gold-light);
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 26px;
+    }
+
+    /* ================= الإطار القوسي لصورة العروسين ================= */
+    .photo-section {
+      position: relative;
+      width: 265px;
+      height: 335px;
+      margin: 8px auto 30px;
+      padding: 8px;
+      border-radius: 140px 140px 22px 22px;
+      border: 1.5px solid var(--gold);
+      background: rgba(7, 18, 36, 0.6);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(212, 175, 55, 0.16);
+    }
+
+    .photo-frame-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 132px 132px 16px 16px;
+      overflow: hidden;
+      position: relative;
+      background: #0A182E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* قص ذكي للتركيز على العروسين في يمين الصورة */
+      object-position: 78% 22%;
+      filter: contrast(1.06) brightness(1.04);
+      display: block;
+    }
+
+    .photo-fallback {
+      display: none;
+      padding: 20px;
+      color: var(--gold-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ================= العداد التنازلي ================= */
+    .section-title {
+      font-family: 'Amiri', serif;
+      font-size: 1.45rem;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .time-box {
+      background: rgba(7, 18, 36, 0.65);
+      border: 1px solid var(--gold-dim);
+      border-radius: 14px;
+      padding: 14px 6px;
+    }
+
+    .time-num {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.2;
+    }
+
+    .time-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ================= قسم العنوان والخريطة ================= */
+    .venue-box {
+      background: rgba(7, 18, 36, 0.55);
+      border: 1px solid var(--gold-dim);
+      border-radius: 18px;
+      padding: 22px 18px;
+      margin-bottom: 24px;
+    }
+
+    .venue-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .venue-time {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .venue-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #B68F23);
+      color: var(--navy-dark);
+      border: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .footer-note {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      margin-top: 10px;
+    }
+
+    /* إشعار النسخ */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 50%;
+      transform: translateX(50%) translateY(80px);
+      background: var(--gold);
+      color: var(--navy-dark);
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: all 0.35s ease;
+      z-index: 200;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة الظرف -->
+  <section id="envelope-screen">
+    <div class="envelope-wrapper" id="envelope" onclick="openInvitation()">
+      <div class="envelope-body">
+        <div class="envelope-flap"></div>
+        <div class="wax-seal">ر &amp; م</div>
+      </div>
+    </div>
+    <div class="open-hint">
+      <p>دعوة زفاف رنا و محمد</p>
+      <button class="open-btn" onclick="openInvitation()">افتح الدعوة</button>
+    </div>
+  </section>
+
+  <!-- زر الموسيقى -->
+  <button id="music-btn" onclick="toggleMusic()" aria-label="تشغيل أو كتم الموسيقى">🔊</button>
+
+  <!-- محتوى الدعوة -->
+  <main id="main-content">
+    <div class="invitation-card">
+      <p class="bismillah">
+        ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
+      </p>
+
+      <div class="divider">✦</div>
+
+      <p class="subtitle">نتشرف بدعوتكم لحضور حفل زفاف</p>
+      <h1 class="couple-names">رنا و محمد</h1>
+      <div class="date-badge">الخميس ١٧ ديسمبر ٢٠٢٦ • الساعة ٧:٠٠ مساءً</div>
+
+      <!-- صورة العروسين داخل الإطار القوسي -->
+      <div class="photo-section">
+        <div class="photo-frame-inner">
+          <img
+            src="couple.jpg"
+            alt="صورة العروسين رنا ومحمد"
+            onerror="this.style.display='none'; document.getElementById('photo-fallback').style.display='block';"
+          />
+          <div id="photo-fallback" class="photo-fallback">
+            ضع صورة العروسين بجانب هذا الملف باسم<br /><strong>couple.jpg</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- العداد التنازلي -->
+      <h2 class="section-title">العد التنازلي ليوم الفرح</h2>
+      <div class="countdown-grid">
+        <div class="time-box">
+          <div class="time-num" id="days">00</div>
+          <div class="time-label">يوم</div>
+        </div>
+        <div class="time-box">
+          <div class="time-num" id="hours">00</div>
+          <div class="time-label">ساعة</div>
+        </div>
+        <div class="time-box">
+          <div class="time-num" id="minutes">00</div>
+          <div class="time-label">دقيقة</div>
+        </div>
+        <div class="time-box">
+          <div class="time-num" id="seconds">00</div>
+          <div class="time-label">ثانية</div>
+        </div>
+      </div>
+
+      <!-- العنوان والخريطة -->
+      <div class="venue-box">
+        <h2 class="section-title" style="margin-bottom: 8px;">مكان الحفل</h2>
+        <div class="venue-name">قاعة الماسة - شبرا الخيمة</div>
+        <div class="venue-time">الخميس ١٧ ديسمبر ٢٠٢٦ — الساعة ٧:٠٠ مساءً</div>
+        <div class="venue-actions">
+          <a
+            class="btn-primary"
+            href="https://maps.app.goo.gl/XcRYEmQDuzDo5mN27"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📍 فتح الموقع على خرائط جوجل
+          </a>
+          <button class="btn-outline" onclick="copyAddress()">
+            📋 نسخ العنوان والرابط
+          </button>
+        </div>
+      </div>
+
+      <div class="divider">✦</div>
+      <p class="footer-note">حضوركم يضاعف فرحتنا</p>
+    </div>
+  </main>
+
+  <div id="toast">تم نسخ العنوان والرابط بنجاح</div>
+
+  <script>
+    const WEDDING_DATE = new Date("2026-12-17T19:00:00+02:00").getTime();
+    const VENUE_COPY_TEXT = "قاعة الماسة - شبرا الخيمة\nhttps://maps.app.goo.gl/XcRYEmQDuzDo5mN27";
+
+    // فتح الظرف والدعوة
+    function openInvitation() {
+      const envelope = document.getElementById("envelope");
+      const screen = document.getElementById("envelope-screen");
+      const main = document.getElementById("main-content");
+      const musicBtn = document.getElementById("music-btn");
+
+      envelope.classList.add("open");
+      startMusic();
+
+      setTimeout(() => {
+        screen.classList.add("hidden");
+        main.classList.add("visible");
+        musicBtn.style.display = "flex";
+      }, 650);
+    }
+
+    // العداد التنازلي
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = WEDDING_DATE - now;
+
+      if (diff <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // نسخ العنوان
+    function copyAddress() {
+      navigator.clipboard.writeText(VENUE_COPY_TEXT).then(() => {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      });
+    }
+
+    // موسيقى هادئة لطيفة (Web Audio API بدون ملفات خارجية)
+    let audioCtx = null;
+    let musicInterval = null;
+    let isPlaying = false;
+    const notes = [261.63, 329.63, 392.00, 493.88, 392.00, 329.63, 293.66, 349.23, 440.00, 523.25];
+    let noteIndex = 0;
+
+    function playSoftNote(freq) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 0.4);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.2);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 2.3);
+    }
+
+    function startMusic() {
+      if (isPlaying) return;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        isPlaying = true;
+        document.getElementById("music-btn").textContent = "🔊";
+        playSoftNote(notes[noteIndex++ % notes.length]);
+        musicInterval = setInterval(() => {
+          if (isPlaying) playSoftNote(notes[noteIndex++ % notes.length]);
+        }, 1600);
+      } catch (e) {}
+    }
+
+    function toggleMusic() {
+      const btn = document.getElementById("music-btn");
+      if (isPlaying) {
+        isPlaying = false;
+        clearInterval(musicInterval);
+        btn.textContent = "🔇";
+      } else {
+        startMusic();
+      }
+    }
+  </script>
+</body>
+</html>
